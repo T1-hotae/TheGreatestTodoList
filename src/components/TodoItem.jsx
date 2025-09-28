@@ -1,14 +1,15 @@
-import { useContext } from "react";
 import "./TodoItem.css";
-import { TodoDispatchStateContext } from "../App";
+import { useDispatch } from "react-redux";
+import { update, remove } from "../store/store";
 
 const TodoItem = ({ id, isDone, content }) => {
-  const { onUpdate, onDelete } = useContext(TodoDispatchStateContext);
+  const dispatch = useDispatch();
+
   const onCheckChange = () => {
-    onUpdate(id);
+    dispatch(update(id));
   };
   const onDeleteClick = () => {
-    onDelete(id);
+    dispatch(remove(id));
   };
   return (
     <>

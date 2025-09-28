@@ -1,25 +1,29 @@
-import { useState, useContext, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
+import { create } from "../store/store";
+import { useDispatch } from "react-redux";
 import "./SearchBar.css";
-import { TodoDispatchStateContext } from "../App";
 
 const SearchBar = () => {
   const [content, setContent] = useState("");
-  const { onCreate } = useContext(TodoDispatchStateContext);
   const inputRef = useRef();
+
+  const dispatch = useDispatch();
 
   const onContentChange = useCallback((e) => {
     setContent(e.target.value);
   }, []);
 
+  //createTodo
   const onCreateTodo = () => {
     if (content === "") {
       inputRef.current.focus();
       return;
     }
-    onCreate(content);
+    dispatch(create(content));
     setContent("");
   };
 
+  //input UX 설정
   const onKeyDown = (e) => {
     if (e.keyCode === 13) {
       onCreateTodo();
