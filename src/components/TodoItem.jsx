@@ -17,7 +17,9 @@ const TodoItem = ({ id, isDone, content }) => {
         <div className="TodoItem-container">
           <input type="checkbox" checked={isDone} onChange={onCheckChange} />
           <div className="content">{content}</div>
-          <button onClick={onDeleteClick}>삭제</button>
+          <button className="btnDel" onClick={onDeleteClick}>
+            삭제
+          </button>
         </div>
       </div>
     </>
