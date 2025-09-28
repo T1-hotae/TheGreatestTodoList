@@ -1,0 +1,16 @@
+.TodoItem {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 10px;
+}
+
+.TodoItem-container {
+  display: flex;
+  width: 300px;
+  gap: 5px;
+}
+
+.TodoItem-container .content {
+  flex: 1;
+}

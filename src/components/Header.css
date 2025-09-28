@@ -1,0 +1,78 @@
+.Header {
+  display: flex;
+  width: 100%;
+}
+
+.Header .Header-container {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+
+  padding: 30px;
+}
+
+.Header .Header-container .my-info,
+.my-option {
+  padding: 10px;
+  border-radius: 50px;
+  border: none;
+  transition: 0.5s;
+}
+
+.Header .Header-container .my-info:hover,
+.my-option:hover {
+  background-color: #ddd;
+  transition: 0.5s;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  min-width: 250px;
+  text-align: center;
+}
+
+.Header .Header-container > div {
+  position: relative; /* 버튼들을 감싸는 div를 기준으로 팝업 위치 결정 */
+}
+
+.profile-Popup {
+  position: absolute;
+  top: 70px; /* 버튼 바로 밑으로 */
+  right: 50px; /* 오른쪽 정렬 */
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  min-width: 150px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 100; /* 다른 요소 위에 표시 */
+}
+
+.profile-Popup button {
+  display: block;
+  width: 100%;
+  padding: 5px 10px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.profile-Popup button:hover {
+  background-color: #ddd;
+}
