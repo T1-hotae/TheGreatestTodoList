@@ -1,13 +1,21 @@
 import "./Header.css";
 import { useState, useEffect, useRef } from "react";
+import PopupMyInfo from "./PopupMyInfo";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setPageToTodoList, setPageToSearch } from "../redux/page";
 
 const Header = () => {
+  // 내 정보
   const [isOpen, setIsOpen] = useState(false);
+
+  const dispatch = useDispatch();
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
 
+  // 내 설정
   const [open, setOpen] = useState(false);
   const popupRef = useRef(null);
   const btnRef = useRef(null);
@@ -27,10 +35,35 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // TodoList
+  const nav = useNavigate();
+  const onHandle = (e) => {
+    const value = e.target.value;
+    if (value === "todo") {
+      dispatch(setPageToTodoList());
+      nav("/");
+    } else if (value === "search") {
+      dispatch(setPageToSearch());
+      nav("/Post");
+    }
+  };
+
+  const { page } = useSelector((state) => state.page);
+
   return (
     <div className="Header">
       <div className="Header-container">
-        <span>TodoList</span>
+        {/* 토글을 통한 페이지 이동 */}
+        <select
+          className="siteName"
+          name="title"
+          onChange={onHandle}
+          defaultValue={page}
+        >
+          <option value="todo">TodoList</option>
+          <option value="search">Search</option>
+        </select>
+        {/* 팝업창  */}
         <div>
           <button className="my-info" onClick={togglePopup}>
             내 정보
@@ -45,15 +78,10 @@ const Header = () => {
         </div>
       </div>
 
-      {/*내 정보 팝업 이긴해*/}
+      {/*내 정보 팝업*/}
       {isOpen && (
         <div className="popup">
-          <div className="popup-content">
-            <h3>내 정보</h3>
-            <p>이름: 홍길동</p>
-            <p>이메일: test@example.com</p>
-            <button onClick={togglePopup}>닫기</button>
-          </div>
+          <PopupMyInfo onClose={togglePopup} />
         </div>
       )}
 

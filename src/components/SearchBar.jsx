@@ -1,13 +1,15 @@
 import { useState, useCallback, useRef, useEffect } from "react";
-import { create } from "../store/store";
+import { create } from "../redux/todo";
 import { useDispatch } from "react-redux";
 import "./SearchBar.css";
+import { useSelector } from "react-redux";
 
 const SearchBar = () => {
   const [content, setContent] = useState("");
   const inputRef = useRef();
 
   const dispatch = useDispatch();
+  const { page, placeholder, buttonTag } = useSelector((state) => state.page);
 
   const onContentChange = useCallback((e) => {
     setContent(e.target.value);
@@ -19,8 +21,10 @@ const SearchBar = () => {
       inputRef.current.focus();
       return;
     }
-    dispatch(create(content));
-    setContent("");
+    if (page === "todo") {
+      dispatch(create(content));
+      setContent("");
+    }
   };
 
   //input UX 설정
@@ -50,12 +54,12 @@ const SearchBar = () => {
           <input
             ref={inputRef}
             type="text"
-            placeholder="추가할 일을 입력하세요."
+            placeholder={placeholder}
             value={content}
             onChange={onContentChange}
             onKeyDown={onKeyDown}
           />
-          <button onClick={onCreateTodo}>추가</button>
+          <button onClick={onCreateTodo}>{buttonTag}</button>
         </div>
       </div>
     </>

@@ -1,4 +1,4 @@
-.TodoList {
-  display: flex;
-  justify-content: center;
+.todo-link {
+  text-decoration: none;
+  color: inherit;
 }

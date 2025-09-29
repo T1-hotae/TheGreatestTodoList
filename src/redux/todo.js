@@ -1,14 +1,18 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-const mockData = [
-  { id: 0, isDone: false, content: "React공부하기" },
-  { id: 1, isDone: false, content: "K-프로젝트" },
-  { id: 2, isDone: false, content: "와이어프레임" },
-];
+const loadTodo = () => {
+  try {
+    const savedTodo = localStorage.getItem("todos");
+    return savedTodo ? JSON.parse(savedTodo) : [];
+  } catch (e) {
+    console.error("Failed to load Todo...", e);
+    return [];
+  }
+};
 
 const todoSlice = createSlice({
   name: "todoSlice",
-  initialState: mockData,
+  initialState: loadTodo(),
   reducers: {
     create: (state, action) => {
       state.push({
@@ -29,12 +33,6 @@ const todoSlice = createSlice({
   },
 });
 
-const store = configureStore({
-  reducer: {
-    todos: todoSlice.reducer,
-  },
-});
-
 export const { create, update, remove } = todoSlice.actions;
 
-export default store;
+export default todoSlice.reducer;

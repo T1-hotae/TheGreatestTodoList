@@ -26,6 +26,9 @@
   transition: 0.5s;
 }
 
+.Header .Header-container > div {
+  position: relative; /* 버튼들을 감싸는 div를 기준으로 팝업 위치 결정 */
+}
 .popup {
   position: fixed;
   top: 0;
@@ -36,18 +39,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.popup-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  min-width: 250px;
-  text-align: center;
-}
-
-.Header .Header-container > div {
-  position: relative; /* 버튼들을 감싸는 div를 기준으로 팝업 위치 결정 */
 }
 
 .profile-Popup {
@@ -76,4 +67,9 @@
 
 .profile-Popup button:hover {
   background-color: #ddd;
+}
+
+.Header-container .siteName {
+  font-weight: bold;
+  cursor: pointer;
 }
