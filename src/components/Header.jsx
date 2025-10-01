@@ -1,11 +1,16 @@
 import "./Header.css";
 import { useState, useEffect, useRef } from "react";
 import PopupMyInfo from "./PopupMyInfo";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { setPageToTodoList, setPageToSearch } from "../redux/page";
+import AccountPopup from "./AccountPopup";
 
 const Header = () => {
+  const location = useLocation();
+  const path = location.pathname;
+  const page = path.split("/")[1];
+
   // 내 정보
   const [isOpen, setIsOpen] = useState(false);
 
@@ -44,11 +49,12 @@ const Header = () => {
       nav("/");
     } else if (value === "search") {
       dispatch(setPageToSearch());
-      nav("/Post");
+      nav("/search");
+    } else if (value === "insta") {
+      dispatch(setPageToSearch());
+      nav("/insta");
     }
   };
-
-  const { page } = useSelector((state) => state.page);
 
   return (
     <div className="Header">
@@ -62,6 +68,7 @@ const Header = () => {
         >
           <option value="todo">TodoList</option>
           <option value="search">Search</option>
+          <option value="insta">게시물</option>
         </select>
         {/* 팝업창  */}
         <div>
@@ -88,9 +95,7 @@ const Header = () => {
       {/* 프로필 팝업 */}
       {open && (
         <div ref={popupRef} className="profile-Popup">
-          <p className="profile">프로필 설정</p>
-          <button className="account-manage">계정 관리</button>
-          <button className="log-out">로그아웃</button>
+          <AccountPopup />
         </div>
       )}
     </div>

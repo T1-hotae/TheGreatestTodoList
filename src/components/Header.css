@@ -29,6 +29,7 @@
 .Header .Header-container > div {
   position: relative; /* 버튼들을 감싸는 div를 기준으로 팝업 위치 결정 */
 }
+
 .popup {
   position: fixed;
   top: 0;
@@ -43,7 +44,7 @@
 
 .profile-Popup {
   position: absolute;
-  top: 70px; /* 버튼 바로 밑으로 */
+  top: 80px; /* 버튼 바로 밑으로 */
   right: 50px; /* 오른쪽 정렬 */
   background: white;
   border: 1px solid #ccc;
@@ -52,21 +53,6 @@
   min-width: 150px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 100; /* 다른 요소 위에 표시 */
-}
-
-.profile-Popup button {
-  display: block;
-  width: 100%;
-  padding: 5px 10px;
-  margin-top: 5px;
-  border: none;
-  border-radius: 5px;
-  background-color: #eee;
-  cursor: pointer;
-}
-
-.profile-Popup button:hover {
-  background-color: #ddd;
 }
 
 .Header-container .siteName {

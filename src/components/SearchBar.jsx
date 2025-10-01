@@ -1,7 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { create } from "../redux/todo";
 import { useDispatch } from "react-redux";
-import "./SearchBar.css";
 import { useSelector } from "react-redux";
 
 const SearchBar = () => {
@@ -49,8 +48,8 @@ const SearchBar = () => {
 
   return (
     <>
-      <div className="SearchBar">
-        <div className="input-btn-container">
+      <div className="flex justify-center items-center my-5">
+        <div className="flex items-center border-1 border-[rgb(103,122,246)] rounded focus-within:border-[rgb(140,92,245)] focus-within:shadow-[0_0_5px_rgb(173,141,242)] transition-all duration-200">
           <input
             ref={inputRef}
             type="text"
@@ -58,8 +57,14 @@ const SearchBar = () => {
             value={content}
             onChange={onContentChange}
             onKeyDown={onKeyDown}
+            className="focus:bg-[rgb(103, 122, 246)] outline-0 flex-1 p-2.5"
           />
-          <button onClick={onCreateTodo}>{buttonTag}</button>
+          <button
+            onClick={onCreateTodo}
+            className="border-0 bg-[rgb(103,122,246)] text-white cursor-pointer p-2.5"
+          >
+            {buttonTag}
+          </button>
         </div>
       </div>
     </>

@@ -1,0 +1,14 @@
+.profile-Popup button {
+  display: block;
+  width: 100%;
+  padding: 5px 10px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.profile-Popup button:hover {
+  background-color: #ddd;
+}
